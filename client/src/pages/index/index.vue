@@ -17,7 +17,16 @@
         <view w-[100%] h-[100%] class="indexBgCon">
           <view absolute top-0 left-0 class="pageHeaderBg"></view>
 
-          <view w-[100%] h-[100%] z-1 relative> </view>
+          <view w-[100%] h-[100%] z-1 relative>
+            <TopNav ref="refTapNav" isCustom>
+              <template #nav>
+                <view w-[100%] h-90rpx bg-#fff flex>1111</view>
+              </template>
+            </TopNav>
+            <view w-[100%] class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
+              123
+            </view>
+          </view>
         </view>
       </view>
       <TabBar></TabBar>
@@ -30,8 +39,16 @@
   const { getTabBarHeight, blackLineH } = useConfigStore()
 
   const refTapNav = ref(null)
+  let tapNavHeight = ref(0)
 
-  onMounted(async () => {})
+  onMounted(async () => {
+    await refTapNav.value.getNavHeight((res) => {
+      if (res.length >= 0) {
+        tapNavHeight.value = res[0].height
+        console.log(tapNavHeight.value)
+      }
+    })
+  })
   onShow(() => {
     console.log('onshow')
     console.log('wsState', wsState.value)
