@@ -1,0 +1,12 @@
+{
+  "cSpell.words": [
+    "Attributify",
+    "Echart",
+    "Echarts",
+    "Mqtt",
+    "swipeable",
+    "XIMEI"
+  ],
+  "scss.validate": true,
+  "scss.lint.validProperties": "warning",
+}
