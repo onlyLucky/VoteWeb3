@@ -1,61 +1,25 @@
 {
-  "easycom": {
+	"easycom": {
 		"autoscan": true,
 		"custom": {
 			// nutui 规则如下配置 https://nutui-uniapp.pages.dev/guide/quick-start.html
-      "^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
-      "^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
+			"^nut-(.*)?-(.*)": "nutui-uniapp/components/$1$2/$1$2.vue",
+			"^nut-(.*)": "nutui-uniapp/components/$1/$1.vue"
 		}
 	},
-	
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页",
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path": "pages/index/controlCar",
-			"style": {
-				"navigationBarTitleText": "远程控制",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-		},
-		{
-			"path": "pages/index/msgPage",
-			"style": {
-				"navigationBarTitleText": "通知记录",
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path": "pages/clinic/index",
-			"style": {
-				"navigationBarTitleText": "诊疗",
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path": "pages/shop/index",
-			"style": {
-				"navigationBarTitleText": "商城",
-				"navigationStyle":"custom"
-			}
-		},
-		{
-			"path": "pages/communication/index",
-			"style": {
-				"navigationBarTitleText": "通讯",
-				"navigationStyle":"custom"
+				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"navigationStyle":"custom"
+				"navigationStyle": "custom"
 			}
 		}
 	],
@@ -64,9 +28,9 @@
 		"backgroundColor": "#ffffff",
 		"color": "#828282",
 		"selectedColor": "#2D81FF",
-		"iconWidth":"24px",
-		"borderStyle":"black",
-		"height":"0px",
+		"iconWidth": "24px",
+		"borderStyle": "black",
+		"height": "0px",
 		"spacing": "3px",
 		"list": [
 			{

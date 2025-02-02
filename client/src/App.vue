@@ -1,4 +1,3 @@
-
 <!-- <script >
   import {useConfigStore} from "@/store/config"
   export default {
@@ -45,37 +44,36 @@
   }
   
 </script> -->
-<script >
-  import {useConfigStore} from "@/store/config"
+<script>
+  import { useConfigStore } from '@/store/config'
   // import RabbitMQClient from "@/utils/mqtt.js"
-  import MqttClient from "./utils/mqtt";
+  import MqttClient from './utils/mqtt'
   let num = ref(0)
 
   export default {
-    
     onLaunch: function () {
       console.log('App Launch')
-      const {setBlackLineHeight,setTopStatusHeight} = useConfigStore()
+      const { setBlackLineHeight, setTopStatusHeight } = useConfigStore()
       // 获取设备屏幕宽度
       let dInfo = uni.getSystemInfoSync()
-      if(dInfo  && dInfo.screenHeight){
+      if (dInfo && dInfo.screenHeight) {
         let size = dInfo.screenHeight - dInfo.safeArea.bottom
-        size = size<0?0:size
-        if(dInfo.statusBarHeight){
+        size = size < 0 ? 0 : size
+        if (dInfo.statusBarHeight) {
           setTopStatusHeight(dInfo.statusBarHeight)
         }
-        if(dInfo.osName.includes("ios")){
-          if(dInfo.safeAreaInsets){
+        if (dInfo.osName.includes('ios')) {
+          if (dInfo.safeAreaInsets) {
             size = dInfo.safeAreaInsets.bottom
           }
           setBlackLineHeight(size)
         }
       }
-      console.log("uni.getSystemInfoSync:",dInfo)
+      console.log('uni.getSystemInfoSync:', dInfo)
       /*#ifdef H5*/
-      uni.hideTabBar();
+      uni.hideTabBar()
       /*#endif*/
-      
+
       /* setInterval(()=>{
         num.value++
         console.log("简单定时器 ++++ ",num.value)
@@ -90,13 +88,17 @@
       /* let mt = new MqttClient()
       mt.connect("ws://192.168.20.39:15675/ws") */
       // mt.connect("wxs://broker.emqx.io:8084/mqtt")
-      // provide('wsNum', num);
+      provide('wsNum', num)
     },
-    mounted(){
-      console.log("mounted")
-      document.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-      }, false);
+    mounted() {
+      console.log('mounted')
+      document.addEventListener(
+        'contextmenu',
+        (event) => {
+          event.preventDefault()
+        },
+        false
+      )
     },
     onShow: function () {
       console.log('App Show')
@@ -111,10 +113,10 @@
   /*每个页面公共css */
   @import 'nutui-uniapp/styles/index.scss';
   @import './static/style/common.scss';
-  uni-page-body{
+  uni-page-body {
     height: 100%;
   }
-  page{
+  page {
     height: 100%;
   }
 </style>
