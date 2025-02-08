@@ -3,6 +3,8 @@ import App from './App.vue'
 import TabBar from './components/common/tabbar.vue'
 import TopNav from './components/common/topNav.vue'
 import { setupStore } from './store'
+
+import "./static/iconfont/iconfont.css"
 import 'virtual:uno.css'
 export function createApp () {
   const app = createSSRApp(App)

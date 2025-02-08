@@ -1,0 +1,16 @@
+{
+  "id": "4822673",
+  "name": "VoteWeb3",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5939830",
+      "name": "下拉刷新",
+      "font_class": "xialashuaxin",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    }
+  ]
+}
