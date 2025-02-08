@@ -30,11 +30,10 @@
               </template>
             </TopNav>
             <view w-[100%] class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
-              <view  w-[100%] h-400rpx >
+              <view  w-[100%] h-[100%] >
                 <!--  -->
                 <scroll-view
-                  z-1
-                  class="scroll-view"
+                  w-[100%] h-[100%] z-1 
                   scroll-y="true"
                   :refresher-enabled="true"
                   :refresher-triggered="triggered"
@@ -65,11 +64,15 @@
                       </view>
                     </view>
                   </template>
-                  <view v-for="(item, index) in list" :key="index" class="item">
-                    {{ item }}
-                  </view>
-                  {{ isCanRefresh }}
                   
+                  <!-- 数据列表 -->
+                  <view >
+                    <view>
+                      <nut-icon size="32rpx" custom-color="#565661" mr-10rpx name="scan"/>
+                      <text text-28rpx text-#565661 >投票</text>
+                    </view>
+                    <h3>10元风暴即将落幕，下次活动你期待有哪些变化？</h3>
+                  </view>
                 </scroll-view>
                 <!-- 回到顶部 -->
               </view>
