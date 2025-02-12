@@ -3,13 +3,14 @@ package main
 import (
 	"net/http"
 	"vote-server/config"
+	"vote-server/global"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 
-	Config := config.InitConfig()
+	global.Config = config.InitConfig()
 	// 创建默认的 Gin 引擎
 	r := gin.Default()
 
@@ -20,7 +21,7 @@ func main() {
 		})
 	})
 
-	addr := Config.GetAddr()
+	addr := global.Config.GetAddr()
 
 	// 启动服务器
 	r.Run(addr)
