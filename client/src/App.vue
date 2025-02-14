@@ -113,6 +113,7 @@
   /*每个页面公共css */
   @import 'nutui-uniapp/styles/index.scss';
   @import './static/style/common.scss';
+  @import './static/style/flex.scss';
   uni-page-body {
     height: 100%;
   }

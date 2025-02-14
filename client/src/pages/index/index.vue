@@ -1,36 +1,26 @@
 <template>
   <view
-    w-[100%]
-    h-[100%]
-    overflow-hidden
-    box-border
-    relative
+    class="Page"
     :style="{ paddingBottom: `${blackLineH}px` }"
   >
-    <view w-[100%] h-[100%]>
+    <view class="pageBox">
       <view
-        w-[100%]
-        bg-[#F4F6F9]
         class="indexPageCon"
         :style="{ height: `calc(100% - ${getTabBarHeight}rpx)` }"
       >
-        <view w-[100%] h-[100%] class="indexBgCon">
-          <view absolute top-0 left-0 class="pageHeaderBg"></view>
-
-          <view w-[100%] h-[100%] z-1 relative>
+        <view class="indexBgCon">
+          <view class="pageHeaderBg"></view>
+          
+          <view class="topNavCon">
             <TopNav ref="refTapNav" isCustom>
               <template #nav> 
-                <view 
-                  w-[100%] h-90rpx bg-#fff flex items-center justify-center
-                  border-b-2rpx border-b-solid border-b-[#eee]
-                  class="navHeader"
-                >
-                  <text text-34rpx >首页</text>
+                <view class="navHeader">
+                  <text>首页</text>
                 </view>
               </template>
             </TopNav>
-            <view w-[100%] class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
-              <view  w-[100%] h-[100%] >
+            <view class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
+              <view class="scrollBox">
                 <!--  -->
                 <scroll-view
                   w-[100%] h-[100%] z-1 
@@ -66,12 +56,42 @@
                   </template>
                   
                   <!-- 数据列表 -->
-                  <view >
-                    <view>
+                  <view class="voteItem">
+                    <view class="voteHeader">
                       <nut-icon size="32rpx" custom-color="#565661" mr-10rpx name="scan"/>
                       <text text-28rpx text-#565661 >投票</text>
                     </view>
                     <h3>10元风暴即将落幕，下次活动你期待有哪些变化？</h3>
+                    <view class="voteUnitBox">
+                      <view class="unitItem">
+                        <view class="unitTxt">
+                          <h5>更多惊喜好礼</h5>
+                          <nut-icon name="rect-down"></nut-icon>
+                        </view>
+                        <p>24,021人</p>
+                      </view>
+                      <view class="unitItem">
+                        <view class="unitTxt">
+                          <h5>更多惊喜好礼</h5>
+                          <nut-icon name="rect-down"></nut-icon>
+                        </view>
+                        <p>24,021人</p>
+                      </view>
+                      <view class="unitItem">
+                        <view class="unitTxt">
+                          <h5>更多惊喜好礼</h5>
+                          <nut-icon name="rect-down"></nut-icon>
+                        </view>
+                        <p>24,021人</p>
+                      </view>
+                    </view>
+                    <view class="voteFooter">
+                      <view class="footerLeft">
+                        <nut-icon name="rect-down"></nut-icon>
+                        <p>30,165人参与</p>
+                      </view>
+                      <text>还有8天结束</text>
+                    </view>
                   </view>
                 </scroll-view>
                 <!-- 回到顶部 -->
@@ -145,21 +165,65 @@
 </script>
 
 <style scoped lang="scss">
-  .indexPageCon {
-    .indexBgCon {
-      background: #f4f6f9;
-      .pageHeaderBg {
+.Page{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  .pageBox{
+    width: 100%;
+    height: 100%;
+    .indexPageCon {
+      width: 100%;
+      background-color: #F4F6F9;
+      .indexBgCon {
         width: 100%;
-        height: 550rpx;
-        // background: #fff;
-      }
-      .navHeader{
-        box-shadow: 4rpx 8rpx 10rpx -1rpx rgba(230, 232, 235,0.3);
-      }
-      .pageCon {
+        height: 100%;
+        background: #f4f6f9;
+        .pageHeaderBg {
+          width: 100%;
+          height: 550rpx;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .topNavCon{
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          position: relative;
+          .navHeader{
+            width: 100%;
+            height: 90rpx;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2rpx solid #eee;
+            box-shadow: 4rpx 8rpx 10rpx -1rpx rgba(230, 232, 235,0.3);
+            text{
+              font-size: 34rpx;
+            }
+          }
+        }
+        
+        .pageCon {
+          width: 100%;
+          height: 100%;
+          .scrollBox{
+            width: 100%;
+            height: 100%;
+          }
+          .voteItem{
+            
+          }
+        }
       }
     }
   }
+}
+  
   .custom-refresher {
     width: 100%;
     height: 60px;
