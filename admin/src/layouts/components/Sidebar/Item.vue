@@ -7,10 +7,12 @@ import Link from "./Link.vue"
 interface Props {
   item: RouteRecordRaw
   basePath?: string
+  active: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  basePath: ""
+  basePath: "",
+  active: ""
 })
 
 /** 是否始终显示根菜单 */
@@ -46,15 +48,26 @@ function resolvePath(routePath: string) {
       return path.resolve(props.basePath, routePath)
   }
 }
+
+/** 获取图标名称 */
+function getSvgIconName(isActive: boolean, svgIcon?: string): string {
+  if (!svgIcon) return ""
+  return isActive ? `${svgIcon}_active` : svgIcon
+}
 </script>
 
 <template>
   <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
     <Link v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
       <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
-        <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" class="svg-icon" />
+        <SvgIcon
+          v-if="theOnlyOneChild.meta.svgIcon"
+          :name="getSvgIconName(resolvePath(theOnlyOneChild.path) === props.active, theOnlyOneChild.meta.svgIcon)"
+          class="svg-icon"
+        />
         <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />
         <template v-if="theOnlyOneChild.meta.title" #title>
+          <!-- {{  }} -->
           <span class="title">{{ theOnlyOneChild.meta.title }}</span>
         </template>
       </el-menu-item>
@@ -71,6 +84,7 @@ function resolvePath(routePath: string) {
         v-for="child in showingChildren"
         :key="child.path"
         :item="child"
+        :active="props.active"
         :base-path="resolvePath(child.path)"
       />
     </template>

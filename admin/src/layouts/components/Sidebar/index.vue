@@ -19,7 +19,10 @@ const appStore = useAppStore()
 const permissionStore = usePermissionStore()
 const settingsStore = useSettingsStore()
 
-const activeMenu = computed(() => route.meta.activeMenu || route.path)
+const activeMenu = computed(() => {
+  console.log("activeMenu:", route.meta.activeMenu || route.path)
+  return route.meta.activeMenu || route.path
+})
 const noHiddenRoutes = computed(() => permissionStore.routes.filter(item => !item.meta?.hidden))
 const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
@@ -49,6 +52,7 @@ const tipLineWidth = computed(() => !isTop.value ? "2px" : "0px")
           :key="noHiddenRoute.path"
           :item="noHiddenRoute"
           :base-path="noHiddenRoute.path"
+          :active="activeMenu"
         />
       </el-menu>
     </el-scrollbar>
