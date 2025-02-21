@@ -26,7 +26,7 @@ export const useAppStore = defineStore("app", () => {
   watch(
     () => sidebar.opened,
     (opened) => {
-      handleSidebarStatus(opened)
+      // handleSidebarStatus(opened)
     }
   )
 

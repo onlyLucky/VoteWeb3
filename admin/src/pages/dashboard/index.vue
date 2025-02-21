@@ -1,12 +1,46 @@
 <script lang="ts" setup>
-import { useUserStore } from "@/pinia/stores/user"
-import Admin from "./components/Admin.vue"
-import Editor from "./components/Editor.vue"
+import { useDevice } from "@@/composables/useDevice"
+import Statistics from "./components/Statistics.vue"
 
-const userStore = useUserStore()
-const isAdmin = userStore.roles.includes("admin")
+const { isMobile } = useDevice()
 </script>
 
 <template>
-  <component :is="isAdmin ? Admin : Editor" />
+  <div class="app-container" :class="{ mobile: isMobile }">
+    <div class="container">
+      <Statistics />
+    </div>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+@import "@@/assets/styles/mixins.scss";
+.app-container {
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px 20px 0px;
+  box-sizing: border-box;
+  .container {
+    width: 100%;
+    height: 100%;
+    padding-right: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    @extend %scrollbar;
+    .dataBox {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .svg {
+    width: 600px;
+    max-width: 100%;
+  }
+}
+</style>
