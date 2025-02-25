@@ -56,41 +56,33 @@
                   </template>
                   
                   <!-- 数据列表 -->
-                  <view class="voteItem">
-                    <view class="voteHeader">
-                      <nut-icon size="32rpx" custom-color="#565661" mr-10rpx name="scan"/>
-                      <text text-28rpx text-#565661 >投票</text>
-                    </view>
-                    <h3>10元风暴即将落幕，下次活动你期待有哪些变化？</h3>
-                    <view class="voteUnitBox">
-                      <view class="unitItem">
-                        <view class="unitTxt">
-                          <h5>更多惊喜好礼</h5>
-                          <nut-icon name="rect-down"></nut-icon>
+                  <view class="voteListCon">
+                    <view class="voteItem" v-for="(item,index) in voteList" :key="index">
+                      <view class="voteHeader f-row-s-c">
+                        <nut-icon size="32rpx" custom-color="#666" mr-16rpx name="scan"/>
+                        <text>投票</text>
+                      </view>
+                      <h3>{{item.title}}</h3>
+                      <view class="voteUnitBox">
+                        <view class="unitItem f-row-b-c" 
+                          v-for="(unit,uIndex) in item.options"
+                          :class="[item.votedId.indexOf(unit.id)!=-1?'active':'']" 
+                          :key="uIndex">
+                          <view class="unitTxt f-row-s-c">
+                            <h5 class="textEllipsis">{{unit.name}}</h5>
+                            <nut-icon name="rect-down" size="32rpx"></nut-icon>
+                          </view>
+                          <p class="unitNum textEllipsis">{{unit.num}}人</p>
+                          <view class="unitItemVal" :style="{width: unit.radio+'%'}"></view>
                         </view>
-                        <p>24,021人</p>
                       </view>
-                      <view class="unitItem">
-                        <view class="unitTxt">
-                          <h5>更多惊喜好礼</h5>
-                          <nut-icon name="rect-down"></nut-icon>
+                      <view class="voteFooter f-row-b-c">
+                        <view class="footerLeft f-row-s-c">
+                          <nut-icon name="rect-down" size="24rpx" custom-color="#777"></nut-icon>
+                          <p>{{item.total}}人参与</p>
                         </view>
-                        <p>24,021人</p>
+                        <text>还有8天结束</text>
                       </view>
-                      <view class="unitItem">
-                        <view class="unitTxt">
-                          <h5>更多惊喜好礼</h5>
-                          <nut-icon name="rect-down"></nut-icon>
-                        </view>
-                        <p>24,021人</p>
-                      </view>
-                    </view>
-                    <view class="voteFooter">
-                      <view class="footerLeft">
-                        <nut-icon name="rect-down"></nut-icon>
-                        <p>30,165人参与</p>
-                      </view>
-                      <text>还有8天结束</text>
                     </view>
                   </view>
                 </scroll-view>
@@ -146,6 +138,91 @@
   const onAbort = () => {
     console.log("onAbort");
   }
+
+  // 投票列表数据
+  const voteList = ref([
+    {
+      type: 0,
+      title: "10元风暴即将落幕，下次活动你期待有哪些变化？",
+      options:[
+        {
+          name: "更多惊喜好礼",
+          num: 24021,
+          id: 0,
+          radio: 60,
+        },
+        {
+          name: "更多惊喜好礼",
+          num: 3195,
+          id: 1,
+          radio: 21,
+        },
+        {
+          name: "其他",
+          num: 2949,
+          id: 2,
+          radio: 19,
+        }
+      ],
+      total: 30165,
+      time: "",
+      votedId: [0]
+    },
+    {
+      type: 0,
+      title: "10元风暴即将落幕，下次活动你期待有哪些变化？",
+      options:[
+        {
+          name: "更多惊喜好礼",
+          num: 24021,
+          id: 0,
+          radio: 60,
+        },
+        {
+          name: "更多惊喜好礼",
+          num: 3195,
+          id: 1,
+          radio: 21,
+        },
+        {
+          name: "其他",
+          num: 2949,
+          id: 2,
+          radio: 19,
+        }
+      ],
+      total: 30165,
+      time: "",
+      votedId: [1,2]
+    },
+    {
+      type: 0,
+      title: "10元风暴即将落幕，下次活动你期待有哪些变化？",
+      options:[
+        {
+          name: "更多惊喜好礼",
+          num: 24021,
+          id: 0,
+          radio: 60,
+        },
+        {
+          name: "更多惊喜好礼",
+          num: 3195,
+          id: 1,
+          radio: 21,
+        },
+        {
+          name: "其他",
+          num: 2949,
+          id: 2,
+          radio: 19,
+        }
+      ],
+      total: 30165,
+      time: "",
+      votedId: [1]
+    },
+  ])
 
   // 初始化加载数据
   loadData();
@@ -204,6 +281,7 @@
             box-shadow: 4rpx 8rpx 10rpx -1rpx rgba(230, 232, 235,0.3);
             text{
               font-size: 34rpx;
+              font-weight: 600;
             }
           }
         }
@@ -219,9 +297,116 @@
               z-index: 1;
             }
           }
-          .voteItem{
-            
+          .voteListCon{
+            width: 100%;
+            padding: 40rpx;
+            box-sizing: border-box;
+            .voteItem{
+              width: 100%;
+              background: #fff;
+              border-radius: 18rpx;
+              padding: 30rpx;
+              box-sizing: border-box;
+              margin-bottom: 40rpx;
+              box-shadow: rgba(99, 99, 99, 0.2) 0rpx 4rpx 16rpx 0rpx;
+              .voteHeader{
+                width: 100%;
+                height: 60rpx;
+                margin-bottom: 20rpx;
+                text{
+                  font-size: 28rpx;
+                  font-weight: bold;
+                  color: #666;
+                }
+              }
+              h3{
+                font-size: 32rpx;
+                color: #333;
+                font-weight: 500;
+                margin-bottom: 20rpx;
+              }
+              .voteUnitBox{
+                width: 100%;
+                height: auto;
+                margin-bottom: 48rpx;
+                .unitItem{
+                  width: 100%;
+                  margin-bottom: 20rpx;
+                  border: 2rpx solid #f0f0f0;
+                  border-radius: 12rpx;
+                  padding: 20rpx 24rpx;
+                  box-sizing: border-box;
+                  position: relative;
+                  .unitTxt{
+                    width: calc(100% - 160rpx);
+                    height: auto;
+                    z-index: 2;
+                    // background: pink;
+                    h5{
+                      max-width: calc(100% - 52rpx);
+                      font-size: 26rpx;
+                      font-weight: 500;
+                      color: #333;
+                    }
+                    .nut-icon{
+                      margin-left: 20rpx;
+                    }
+                  }
+                  .unitNum{
+                    width: 160rpx;
+                    height: 100%;
+                    text-align: right;
+                    font-size: 26rpx;
+                    
+                    color: #333;
+                    z-index: 2;
+                  }
+                  .unitItemVal{
+                    position: absolute;
+                    z-index: 1;
+                    top: 0rpx;
+                    left: 0rpx;
+                    width: 40%;
+                    height: 100%;
+                    border-radius: 8rpx;
+                    background: #eeeeee;
+                  }
+                }
+                .unitItem.active{
+                  // background: #fbeded;
+                  border-color: #c2deff;
+                  .unitItemVal{
+                    background: #c2deff;
+                  }
+                  .unitTxt{
+                    h5{
+                      color: #0073ff;
+                    }
+                    .nut-icon{
+                      color: #0073ff;
+                    }
+                  }
+                  .unitNum{
+                    color: #0073ff;
+                  }
+                }
+              }
+              .voteFooter{
+                .footerLeft{
+                  p{
+                    margin-left: 12rpx;
+                    font-size: 24rpx;
+                    color: #777;
+                  }
+                }
+                text{
+                  font-size: 24rpx;
+                  color: #777;
+                }
+              }
+            }
           }
+          
         }
       }
     }

@@ -1,24 +1,24 @@
 <template>
   <view
-    w-[100%]
-    h-[100%]
-    overflow-hidden
-    box-border
-    relative
+    class="Page"
     :style="{ paddingBottom: `${blackLineH}px` }"
   >
-    <view w-[100%] h-[100%]>
+    <view class="pageBox">
       <view
-        w-[100%]
-        bg-[#F4F6F9]
         class="indexPageCon"
         :style="{ height: `calc(100% - ${getTabBarHeight}rpx)` }"
       >
-        <view w-[100%] h-[100%] class="indexBgCon">
-          <view absolute top-0 left-0 class="pageHeaderBg"></view>
+        <view class="indexBgCon">
+          <view class="pageHeaderBg"></view>
 
-          <view w-[100%] h-[100%] z-1 relative>
-            <TopNav ref="refTapNav"></TopNav>
+          <view class="topNavCon">
+            <TopNav ref="refTapNav" isCustom>
+              <template #nav> 
+                <view class="navHeader">
+                  <text>首页</text>
+                </view>
+              </template>
+            </TopNav>
             <view w-[100%] class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
               123
             </view>
@@ -51,6 +51,55 @@
 </script>
 
 <style scoped lang="scss">
+.Page{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  .pageBox{
+    width: 100%;
+    height: 100%;
+    .indexPageCon {
+      width: 100%;
+      background-color: #F4F6F9;
+      .indexBgCon {
+        width: 100%;
+        height: 100%;
+        background: #f4f6f9;
+        .pageHeaderBg {
+          width: 100%;
+          height: 550rpx;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        .topNavCon{
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          position: relative;
+          .navHeader{
+            width: 100%;
+            height: 90rpx;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text{
+              font-size: 34rpx;
+              font-weight: 600;
+            }
+          }
+        }
+        
+        .pageCon {
+          width: 100%;
+          
+        }
+      }
+    }
+  }
+}
   .indexPageCon {
     .indexBgCon {
       background: #f4f6f9;
@@ -58,6 +107,7 @@
         width: 100%;
         height: 550rpx;
         // background: #fff;
+        background: linear-gradient(180deg, #c3e5fe, #ffffff);
       }
       .pageCon {
       }

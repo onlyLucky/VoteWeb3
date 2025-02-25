@@ -6,13 +6,13 @@ my-gin-project/
 ├── api
 │   └── v1
 │       └── user.go
-├── config
+├── config 配置文件
 │   └── config.yaml
-├── controller
+├── controller 控制器 处理用户相关的业务逻辑
 │   └── user_controller.go
-├── model
+├── model 数据模型
 │   └── user.go
-├── router
+├── router 路由
 │   └── router.go
 ├── service
 │   └── user_service.go

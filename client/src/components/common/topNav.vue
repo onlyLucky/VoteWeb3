@@ -7,7 +7,7 @@
     ></view>
     <!-- nav header -->
     <!-- <view w-[100%] bg-[#F4F6F9] h-80rpx></view> -->
-    <view w-[100%] bg-[#F4F6F9] h-88rpx v-show="props.isCustom">
+    <view w-[100%] h-88rpx v-show="props.isCustom">
       <slot name="nav"></slot>
     </view>
   </view>
