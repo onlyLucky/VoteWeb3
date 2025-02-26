@@ -9,7 +9,9 @@
         :style="{ height: `calc(100% - ${getTabBarHeight}rpx)` }"
       >
         <view class="indexBgCon">
-          <view class="pageHeaderBg"></view>
+          <view class="pageHeaderBg" :style="{paddingTop: `${tapNavHeight}px`}">
+            <view class="userInfo"></view>
+          </view>
 
           <view class="topNavCon">
             <TopNav ref="refTapNav" isCustom>
@@ -62,17 +64,18 @@
     height: 100%;
     .indexPageCon {
       width: 100%;
-      background-color: #F4F6F9;
+      background-color: #f3f5f9;
       .indexBgCon {
         width: 100%;
         height: 100%;
-        background: #f4f6f9;
+        background: #f3f5f9;
         .pageHeaderBg {
           width: 100%;
-          height: 550rpx;
+          height: 240rpx;
           position: absolute;
           top: 0;
           left: 0;
+          background: linear-gradient(180deg, #c3e5fe, #fcfbfd);
         }
         .topNavCon{
           width: 100%;
@@ -100,17 +103,4 @@
     }
   }
 }
-  .indexPageCon {
-    .indexBgCon {
-      background: #f4f6f9;
-      .pageHeaderBg {
-        width: 100%;
-        height: 550rpx;
-        // background: #fff;
-        background: linear-gradient(180deg, #c3e5fe, #ffffff);
-      }
-      .pageCon {
-      }
-    }
-  }
 </style>
