@@ -43,6 +43,20 @@
 				"navigationBarTitleText": "用户列表",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path": "pages/vote/type",
+			"style": {
+				"navigationBarTitleText": "发起投票",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/vote/index",
+			"style": {
+				"navigationBarTitleText": "发起投票",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"tabBar": {

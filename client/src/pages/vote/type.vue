@@ -19,25 +19,22 @@
                     <nut-icon name="rect-left"></nut-icon>
                     <text>返回</text>
                   </view>
-                  <text>人员列表</text>
+                  <text>发起投票</text>
                   <view class="back"></view>
                 </view>
               </template>
             </TopNav>
             <view w-[100%] class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
-              <view class="userPage">
-                <view class="userItem f-row-s-c" v-for="(item, index) in userList" :key="index">
-                  <view class="avatar">
-                    <image
-                      src="@/static/images/user/avatar.png"
-                      mode="aspectFit"
-                      lazy-load
-                    />
+              <view class="votePage">
+                <view class="voteItem f-row-b-c" 
+                  v-for="(item, index) in voteType"
+                  @tap="goCreate" 
+                  :key="index">
+                  <view class="typeInfo">
+                    <h3>{{item.title}}</h3>
+                    <text>{{item.desc}}</text>
                   </view>
-                  <view class="userInfo">
-                    <h3>{{item.username}}</h3>
-                    <text>{{item.dept}}</text>
-                  </view>
+                  <nut-icon name="rect-right" custom-color="#999"></nut-icon>
                 </view>
               </view>
             </view>
@@ -55,51 +52,33 @@
   const refTapNav = ref(null)
   let tapNavHeight = ref(0)
 
-  let userList = ref([
-  {
-      "username": "张伟",
-      "dept": "计算机科学与技术"
+  let voteType = ref([
+    {
+      title:"默认投票",
+      desc: "是与否的选择"
     },
     {
-      "username": "李娜",
-      "dept": "计算机科学与技术"
+      title:"图文投票",
+      desc: "快速创建图文的投票"
     },
     {
-      "username": "王强",
-      "dept": "计算机科学与技术"
+      title:"群投票",
+      desc: "指定组织内部成员投票"
     },
     {
-      "username": "赵敏",
-      "dept": "计算机科学与技术"
-    },
-    {
-      "username": "刘洋",
-      "dept": "计算机科学与技术"
-    },
-    {
-      "username": "陈静",
-      "dept": "计算机科学与技术"
-    },
-    {
-      "username": "孙浩",
-      "dept": "计算机科学与技术"
-    },
-    {
-      "username": "周莉",
-      "dept": "计算机科学与技术"
-    },
-    {
-      "username": "吴迪",
-      "dept": "计算机科学与技术"
-    },
-    {
-      "username": "郭磊",
-      "dept": "计算机科学与技术"
+      title:"多项投票",
+      desc: "可以选择多项"
     }
   ])
 
   const goBack = () => {
     uni.navigateBack({ delta: 1 })
+  }
+
+  const goCreate = () => {
+    uni.navigateTo({
+      url: '/pages/vote/index'
+    })
   }
 
   onMounted(async () => {
@@ -127,11 +106,11 @@
     height: 100%;
     .indexPageCon {
       width: 100%;
-      background-color: #fff;
+      background-color: #f3f5f9;
       .indexBgCon {
         width: 100%;
         height: 100%;
-        background: #fff;
+        background: #f3f5f9;
         .pageHeaderBg {
           width: 100%;
           height: 240rpx;
@@ -173,24 +152,20 @@
         .pageCon {
           width: 100%;
           overflow-y: auto;
-          .userPage{
+          .votePage{
             width: 100%;
             height: auto;
-            padding: 0 40rpx;
+            padding: 40rpx 40rpx;
             box-sizing: border-box;
-            .userItem{
+            .voteItem{
               width: 100%;
               height: 180rpx;
-              .avatar{
-                width: 130rpx;
-                height: 130rpx;
-                margin-right: 30rpx;
-                image{
-                  width: 100%;
-                  height: 100%;
-                }
-              }
-              .userInfo{
+              background: #fff;
+              border-radius: 20rpx;
+              margin-bottom: 40rpx;
+              padding: 0 40rpx;
+              box-sizing: border-box;
+              .typeInfo{
                 h3{
                   font-size: 32rpx;
                   color: #333;

@@ -21,43 +21,48 @@
                     <nut-icon name="rect-left" custom-color="#fff"></nut-icon>
                     <text>返回</text>
                   </view>
-                  <text>注册</text>
+                  <text>发起投票</text>
                   <view class="back"></view>
                 </view>
               </template>
             </TopNav>
             <view w-[100%] class="pageCon" :style="{ height: `calc(100% - ${tapNavHeight}px)` }">
-              <view class="img-a">
+              <view class="pageBoxCon">
+
+                <view class="img-a">
                 
-              </view>
-              <view class="login-view" style="">
-                <view class="t-login">
-                  <form class="cl">
-                    <view class="t-a">
-                      <text class="txt">邀请码</text>
-                      <input type="text" placeholder="请输入您的邀请码" v-model="vCode" />
-                    </view>
-                    <view class="t-a">
-                      <text class="txt">用户名</text>
-                      <input type="text" placeholder="请输入您的用户名" v-model="username" />
-                    </view>
-                    <view class="t-a">
-                      <text class="txt">邮箱</text>
-                      <input type="text" placeholder="请输入您的邮箱" v-model="email" />
-                    </view>
-                    <view class="t-a">
-                      <text class="txt">密码</text>
-                      <input type="password" name="code" maxlength="18" placeholder="请输入您的密码" v-model="pwd" />
-                    </view>
-                    <view class="t-a">
-                      <text class="txt">密码验证</text>
-                      <input type="password" name="code" maxlength="18" placeholder="请再输入一次密码" v-model="tPwd" />
-                    </view>
-                    <button @tap="reg()">注 册</button>
-                  </form>
+                </view>
+                <view class="login-view" style="">
+                  <view class="t-login">
+                    <form class="cl">
+                      <view class="t-a">
+                        <text class="txt">投票名称</text>
+                        <input type="text" placeholder="请输入" v-model="voteName" />
+                      </view>
+                      <view class="t-a">
+                        <text class="txt">投票时间</text>
+                        <input type="text" placeholder="请选择" v-model="voteTime" />
+                      </view>
+                      <view class="t-a">
+                        <text class="txt">投票人员</text>
+                        <input type="text" placeholder="请选择" v-model="voteNum" />
+                      </view>
+                      <view class="t-a">
+                        <text class="txt">投票类型</text>
+                        <input type="text" placeholder="请选择" v-model="voteType" />
+                      </view>
+                      <view class="t-a">
+                        <text class="txt">是否匿名</text>
+                        <input type="text" placeholder="请选择" v-model="voteNm" />
+                      </view>
+                      
+                    </form>
+                  </view>
                 </view>
               </view>
-
+              <view class="bottomBtn f-row-c-c">
+                <button @tap="sendVote">发 起 投 票</button>
+              </view>
             </view>
           </view>
         </view>
@@ -73,21 +78,36 @@
   const refTapNav = ref(null)
   let tapNavHeight = ref(0)
 
-  let vCode = ref('T23Q03')
-  let email = ref('admin@tcc.cn')
-  let username = ref('admin')
-  let pwd = ref('123456')
-  let tPwd = ref('123456')
+  let voteName = ref('您是否选择使用投票系统呢？')
+  let voteTime = ref('')
+  let voteNum = ref('全体成员')
+  let voteType = ref('支持/反对')
+  let voteNm = ref('是')
 
   //注册按钮点击
-  const reg = () => {
-    uni.showToast({ title: '注册成功', icon: 'none' });
-    uni.navigateBack({ delta: 1 })
+  const sendVote = () => {
+    uni.showToast({ title: '成功发送投票', icon: 'none' });
+    uni.switchTab({ 
+      url: '/pages/index/index' 
+    })
   }
 
   const goBack = () => {
     uni.navigateBack({ delta: 1 })
   }
+
+  const formatDate = (date)=> {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从 0 开始，需要加 1
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  voteTime.value = formatDate(new Date())
 
   onMounted(async () => {
     await refTapNav.value.getNavHeight((res) => {
@@ -97,7 +117,7 @@
     })
   })
   onShow(() => {
-    console.log('onshow')
+    console.log('onshow',new Date())
     console.log('wsState', wsState.value)
   })
 </script>
@@ -159,6 +179,16 @@
         
         .pageCon {
           width: 100%;
+          .pageBoxCon{
+            width: 100%;
+            height: calc(100% - 120rpx);
+            overflow-y: auto;
+          }
+          .bottomBtn{
+            width: 100%;
+            height: 120rpx;
+
+          }
         }
       }
     }
@@ -202,11 +232,12 @@
 	padding-top: 80rpx;
 }
 
-.t-login button {
+button {
 	font-size: 28rpx;
 	background: #2796f2;
 	color: #fff;
 	height: 90rpx;
+  width: 80%;
 	line-height: 90rpx;
 	border-radius: 50rpx;
 	font-weight: bold;

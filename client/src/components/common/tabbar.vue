@@ -23,7 +23,7 @@
       :style="{ width: `${getTabBarHeight}rpx`, height: `${getTabBarHeight}rpx` }"
       v-for="(item, index) in tabList"
       :key="index"
-      @click="goTabPage(index)"
+      @tap="goTabPage(index)"
     >
       <image
         w-48rpx
@@ -42,9 +42,9 @@
         :style="{ color: index == current ? '#2085FF' : '#666' }"
         >{{ item.text }}</text
       >
-      <view class="addVote">
-        <nut-icon name="uploader" size="50rpx" custom-color="#2085FF"></nut-icon>
-      </view>
+    </view>
+    <view class="addVote" @tap="goAddVote">
+      <nut-icon name="uploader" size="50rpx" custom-color="#2085FF"></nut-icon>
     </view>
   </view>
 </template>
@@ -96,6 +96,13 @@
   }
   setCurrent()
 
+  const goAddVote = () => {
+    console.log("goAddVote")
+    uni.navigateTo({
+      url: '/pages/vote/type'
+    })
+  }
+
   const props = defineProps({
     // 当前选中下标
     index: {
@@ -104,6 +111,7 @@
     }
   })
   const goTabPage = (index) => {
+    console.log("goTabPage")
     if (index == current.value) return
     let url = '/' + tabList.value[index].pagePath
     uni.switchTab({
