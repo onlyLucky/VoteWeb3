@@ -2,10 +2,9 @@
 <template>
   <view
     w-[100%]
-    px-10rpx
+    px-60rpx
     py-0
     box-border
-    overflow-hidden
     border-t-1rpx
     border-t-solid
     border-t-[#f0f0f0]
@@ -13,6 +12,7 @@
     items-center
     justify-between
     bg-#fff
+    relative
     :style="{ height: `${getTabBarHeight}rpx` }"
   >
     <view
@@ -42,6 +42,9 @@
         :style="{ color: index == current ? '#2085FF' : '#666' }"
         >{{ item.text }}</text
       >
+      <view class="addVote">
+        <nut-icon name="uploader" size="50rpx" custom-color="#2085FF"></nut-icon>
+      </view>
     </view>
   </view>
 </template>
@@ -108,4 +111,22 @@
     })
   }
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.addVote{
+  position: absolute;
+  top: -50rpx;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 100rpx;
+  background: #fff;
+  border-top: 2rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .nut-icon{
+    margin-bottom: 30rpx;
+  }
+}
+</style>
