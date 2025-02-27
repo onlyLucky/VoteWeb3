@@ -64,30 +64,53 @@ export const constantRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: "/link",
-    meta: {
-      title: "文档链接",
-      elIcon: "Link"
-    },
+    path: "/vote",
+    component: Layouts,
     children: [
       {
-        path: "https://juejin.cn/post/7445151895121543209",
-        component: () => {},
-        name: "Link1",
+        path: "vote",
+        component: () => import("@/pages/vote/index.vue"),
+        name: "Vote",
         meta: {
-          title: "中文文档"
-        }
-      },
-      {
-        path: "https://juejin.cn/column/7207659644487139387",
-        component: () => {},
-        name: "Link2",
-        meta: {
-          title: "新手教程"
+          title: "投票",
+          svgIcon: "vote", // dashboard
+          affix: true
         }
       }
     ]
-  }
+  },
+  {
+    path: "/organization",
+    component: Layouts,
+    children: [
+      {
+        path: "organization",
+        component: () => import("@/pages/organization/index.vue"),
+        name: "Organization",
+        meta: {
+          title: "组织",
+          svgIcon: "organization", // dashboard
+          affix: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/users",
+    component: Layouts,
+    children: [
+      {
+        path: "users",
+        component: () => import("@/pages/users/index.vue"),
+        name: "users",
+        meta: {
+          title: "人员",
+          svgIcon: "users", // dashboard
+          affix: true
+        }
+      }
+    ]
+  },
 ]
 
 /**

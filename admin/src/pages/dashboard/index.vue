@@ -7,8 +7,10 @@ const { isMobile } = useDevice()
 
 <template>
   <div class="app-container" :class="{ mobile: isMobile }">
-    <div class="container">
-      <Statistics />
+    <div class="container f-col-c-c">
+      <!-- <Statistics /> -->
+      <img src="./images/dashboard.svg" alt="">
+      <p>欢迎使用</p>
     </div>
   </div>
 </template>
@@ -30,6 +32,15 @@ const { isMobile } = useDevice()
     .dataBox {
       width: 100%;
       height: 200px;
+    }
+    img {
+      width: 60%;
+      height: auto;
+    }
+    p {
+      font-size: 14px;
+      color: #999;
+      margin-top: 10px;
     }
   }
 }

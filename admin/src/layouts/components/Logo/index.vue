@@ -20,7 +20,8 @@ const { isLeft, isTop } = useLayoutMode()
         <!-- <img :src="logo" class="layout-logo"> -->
       </router-link>
       <router-link v-else key="expand" to="/">
-        <img :src="!isLeft ? logo : logo" class="layout-logo-text">
+        <!-- <img :src="!isLeft ? logo : logo" class="layout-logo-text"> -->
+        <h3>投票后台管理系统</h3>
       </router-link>
     </transition>
   </div>

@@ -23,6 +23,7 @@ export interface TableData {
   roles: string
   status: boolean
   username: string
+  address: string
 }
 
 export type TableResponseData = ApiResponseData<{

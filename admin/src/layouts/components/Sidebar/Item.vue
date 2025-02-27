@@ -62,7 +62,7 @@ function getSvgIconName(isActive: boolean, svgIcon?: string): string {
       <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
         <SvgIcon
           v-if="theOnlyOneChild.meta.svgIcon"
-          :name="getSvgIconName(resolvePath(theOnlyOneChild.path) === props.active, theOnlyOneChild.meta.svgIcon)"
+          :name="theOnlyOneChild.meta.svgIcon"
           class="svg-icon"
         />
         <component v-else-if="theOnlyOneChild.meta.elIcon" :is="theOnlyOneChild.meta.elIcon" class="el-icon" />

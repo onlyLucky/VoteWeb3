@@ -89,7 +89,8 @@ createCode()
     <Owl :close-eyes="isFocus" />
     <div class="login-card">
       <div class="title">
-        <img src="@@/assets/images/layouts/logoText.png">
+        <!-- <img src="@@/assets/images/layouts/logoText.png"> -->
+        <h3>投票后台管理系统</h3>
       </div>
       <div class="content">
         <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
@@ -178,9 +179,12 @@ createCode()
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 150px;
+      height: 90px;
       img {
         height: 40px;
+      }
+      h3 {
+        font-size: 30px;
       }
     }
     .content {

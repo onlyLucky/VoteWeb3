@@ -138,27 +138,26 @@
   const onAbort = () => {
     console.log("onAbort");
   }
-
   // 投票列表数据
   const voteList = ref([
     {
       type: 0,
-      title: "10元风暴即将落幕，下次活动你期待有哪些变化？",
+      title: "最受欢迎的电影评选",
       options:[
         {
-          name: "更多惊喜好礼",
+          name: "《哪吒2》",
           num: 24021,
           id: 0,
           radio: 60,
         },
         {
-          name: "更多惊喜好礼",
+          name: "《蜡笔小新：好别致的影分身》",
           num: 3195,
           id: 1,
           radio: 21,
         },
         {
-          name: "其他",
+          name: "《熊出没·重启未来》",
           num: 2949,
           id: 2,
           radio: 19,
@@ -170,22 +169,22 @@
     },
     {
       type: 0,
-      title: "10元风暴即将落幕，下次活动你期待有哪些变化？",
+      title: "校园最受欢迎社团评选",
       options:[
         {
-          name: "更多惊喜好礼",
+          name: "计算机编程社",
           num: 24021,
           id: 0,
           radio: 60,
         },
         {
-          name: "更多惊喜好礼",
+          name: "二次元社",
           num: 3195,
           id: 1,
           radio: 21,
         },
         {
-          name: "其他",
+          name: "国风社",
           num: 2949,
           id: 2,
           radio: 19,
@@ -197,22 +196,22 @@
     },
     {
       type: 0,
-      title: "10元风暴即将落幕，下次活动你期待有哪些变化？",
+      title: "最受欢迎的运动项目投票",
       options:[
         {
-          name: "更多惊喜好礼",
+          name: "乒乓球",
           num: 24021,
           id: 0,
           radio: 60,
         },
         {
-          name: "更多惊喜好礼",
+          name: "篮球",
           num: 3195,
           id: 1,
           radio: 21,
         },
         {
-          name: "其他",
+          name: "游泳",
           num: 2949,
           id: 2,
           radio: 19,
