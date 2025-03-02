@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{algorithm}  % 提供算法环境
+\usepackage{algpseudocode}  % 提供伪代码语法
+\usepackage{amsmath}  % 提供数学符号支持
+\usepackage[UTF8]{ctex} %输出中文
+
+\begin{document}
+
+\begin{algorithm}
+\caption{用户注册流程}
+\begin{algorithmic}[1]  % 每行编号
+\State \textbf{输入:} 用户信息（用户名、密码、邮箱）
+\State \textbf{输出:} 注册结果
+\State
+\State \textit{从请求中解析用户信息}
+\State \textit{user} $\gets$ 解析用户输入
+\State
+\If{用户名长度 $< 3$ 或 密码长度 $< 6$ 或 邮箱为空}
+    \State \Return 错误信息：“无效输入”
+\EndIf
+\State
+\State \textit{生成钱包地址}
+\Try
+    \State \textit{privateKey} $\gets$ 生成私钥()
+    \State \textit{user.WalletAddress} $\gets$ 从私钥生成钱包地址(\textit{privateKey.PublicKey})
+\On{异常}
+    \State \Return 错误信息：“钱包创建失败”
+\EndTry
+\State
+\State \textit{加密用户密码}
+\Try
+    \State \textit{hashedPassword} $\gets$ 使用bcrypt加密(\textit{user.Password})
+    \State \textit{user.Password} $\gets$ \textit{hashedPassword}
+\On{异常}
+    \State \Return 错误信息：“密码加密失败”
+\EndTry
+\State
+\State \textit{将用户信息存储到数据库}
+\Try
+    \State 将\textit{user}存储到数据库
+\On{异常}
+    \State \Return 错误信息：“用户创建失败”
+\EndTry
+\State
+\State \Return 注册成功消息：“用户注册成功”，钱包地址：\textit{user.WalletAddress}
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}
